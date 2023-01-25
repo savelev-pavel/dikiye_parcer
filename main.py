@@ -17,18 +17,19 @@ def getRunnersData(dikiye_url = 'https://app.dikiye.ru/statistics/',
 
     rows = soup.find_all("tr")
 
-    table_headers = []
+    table_headers = ['№', 'Трейлраннер', 'Количество трейлов', 'Количество уникальных локаций',
+                     'Общая дистанция', 'Пейсмейкер или замыкающий', 'Бежал с собакой', 'Привел друга на трейл',
+                     'Присматривал за детьми на трейле', 'Баллы']
     data = list()
 
     for row in rows:
-        runner = list()
+        runner = dict()
         cells = row.find_all("td")
-        for i in range(len(cells)):
-            runner.append(str(cells[i]).lstrip('<td>').rstrip('</td>'))
+        for j in range(len(cells)):
+            runner[table_headers[j]] = (str(cells[j]).lstrip('<td>').rstrip('</td>'))
         data.append(runner)
-    data.remove([])
+    data.remove({})
 
     return data
 if __name__ == '__main__':
-    for i in range(len(getRunnersData())):
-        print(getRunnersData())
+    print(getRunnersData())

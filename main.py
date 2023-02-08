@@ -52,7 +52,7 @@ def xls_table(pacer_table):
 table = list(getRunnersData())
 table_filtered = []
 runner = []
-margins = ['8','9','28','29','58','59','98','99']
+margins = ['8', '9', '28', '29', '58', '59', '98', '99']
 for j, _ in enumerate(table):
     if table[j]['Пейсмейкер или замыкающий'] in margins:
         runner = [table[j]['№'], table[j]['Трейлраннер'], table[j]['Пейсмейкер или замыкающий']]

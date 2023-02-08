@@ -57,4 +57,4 @@ for j, _ in enumerate(table):
     if table[j]['Пейсмейкер или замыкающий'] in margins:
         runner = [table[j]['№'], table[j]['Трейлраннер'], table[j]['Пейсмейкер или замыкающий']]
         table_filtered.append(runner)
-        xls_table(table_filtered)
+xls_table(table_filtered)

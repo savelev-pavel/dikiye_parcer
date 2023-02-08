@@ -42,7 +42,7 @@ def xls_table(pacer_table):
     row = 1
     column = 0
     for i,_ in enumerate(pacer_table):
-        no, name, paces = pacer_table[i][0], pacer_table[i][1], pacer_table[i][2]
+        no, name, paces = int(pacer_table[i][0]), pacer_table[i][1], int(pacer_table[i][2])
         page.write(row, column, no)
         page.write(row, column + 1, name)
         page.write(row, column + 2, paces)

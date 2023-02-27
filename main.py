@@ -7,8 +7,8 @@ headers = {'Accept': '*/*', 'Connection': 'keep-alive',
                          'Chrome/70.0.3538.67 Safari/537.36 OPR/56.0.3051.104'}
 
 table_headers = ['№', 'Трейлраннер', 'Количество трейлов', 'Количество уникальных локаций',
-                 'Общая дистанция', 'Пейсмейкер или замыкающий', 'Бежал с собакой', 'Привел друга на трейл',
-                 'Присматривал за детьми на трейле', 'Баллы']
+                 'Общая дистанция','Был наставником', 'Пейсмейкер или замыкающий', 'Бежал с собакой',
+                 'Привел друга на трейл', 'Присматривал за детьми на трейле', 'Баллы']
 dikiye_url = 'https://app.dikiye.ru/statistics/'
 
 def getRunnersData():
@@ -49,12 +49,17 @@ def xls_table(pacer_table):
         row += 1
     book.close()
 
-table = list(getRunnersData())
-table_filtered = []
-runner = []
-margins = ['8', '9', '28', '29', '58', '59', '98', '99']
-for j, _ in enumerate(table):
-    if table[j]['Пейсмейкер или замыкающий'] in margins:
-        runner = [table[j]['№'], table[j]['Трейлраннер'], table[j]['Пейсмейкер или замыкающий']]
-        table_filtered.append(runner)
-xls_table(table_filtered)
+try:
+    table = list(getRunnersData())
+    table_filtered = []
+    runner = []
+    margins = ['8', '9', '28', '29', '58', '59', '98', '99']
+    for j, _ in enumerate(table):
+        if table[j]['Пейсмейкер или замыкающий'] in margins:
+            runner = [table[j]['№'], table[j]['Трейлраннер'], table[j]['Пейсмейкер или замыкающий']]
+            table_filtered.append(runner)
+    xls_table(table_filtered)
+except Exception:
+    input('Возникла ошибка, нажмите любую клавишу')
+else:
+    input('Успешно, нажмите любую клавишу')

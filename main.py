@@ -7,7 +7,7 @@ headers = {'Accept': '*/*', 'Connection': 'keep-alive',
                          'Chrome/70.0.3538.67 Safari/537.36 OPR/56.0.3051.104'}
 
 table_headers = ['№', 'Трейлраннер', 'Количество трейлов', 'Количество уникальных локаций',
-                 'Общая дистанция','Был наставником', 'Пейсмейкер или замыкающий', 'Бежал с собакой',
+                 'Общая дистанция','Привез попутчиков','Был наставником', 'Пейсмейкер или замыкающий', 'Бежал с собакой',
                  'Привел друга на трейл', 'Присматривал за детьми на трейле', 'Баллы']
 dikiye_url = 'https://app.dikiye.ru/statistics/'
 
@@ -56,8 +56,8 @@ try:
     runner = []
     margins = ['8', '9', '28', '29', '58', '59', '98', '99']
     for j, _ in enumerate(table):
-        if table[j]['Бежал с собакой'] in margins:
-            runner = [table[j]['№'], table[j]['Трейлраннер'], table[j]['Бежал с собакой']]
+        if table[j]['Пейсмейкер или замыкающий'] in margins:
+            runner = [table[j]['№'], table[j]['Трейлраннер'], table[j]['Пейсмейкер или замыкающий']]
             table_filtered.append(runner)
     xls_table(table_filtered)
 except Exception:

@@ -11,6 +11,7 @@ table_headers = ['№', 'Трейлраннер', 'Количество трей
                  'Привел друга на трейл', 'Присматривал за детьми на трейле', 'Баллы']
 dikiye_url = 'https://app.dikiye.ru/statistics/'
 
+
 def getRunnersData():
     response = requests.get(dikiye_url, headers=headers)
     soup = BeautifulSoup(response.text, 'lxml')
@@ -21,7 +22,7 @@ def getRunnersData():
     for row in rows:
         runner = dict()
         cells = row.find_all("td")
-        for j in range(len(cells)):
+        for j in range(len(cells)-1):
             runner[table_headers[j]] = (str(cells[j]).lstrip('<td>').rstrip('</td>'))
         data.append(runner)
     data.remove({})
@@ -55,8 +56,8 @@ try:
     runner = []
     margins = ['8', '9', '28', '29', '58', '59', '98', '99']
     for j, _ in enumerate(table):
-        if table[j]['Пейсмейкер или замыкающий'] in margins:
-            runner = [table[j]['№'], table[j]['Трейлраннер'], table[j]['Пейсмейкер или замыкающий']]
+        if table[j]['Бежал с собакой'] in margins:
+            runner = [table[j]['№'], table[j]['Трейлраннер'], table[j]['Бежал с собакой']]
             table_filtered.append(runner)
     xls_table(table_filtered)
 except Exception:
